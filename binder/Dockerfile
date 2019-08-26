@@ -55,7 +55,7 @@ RUN julia -e "using Pkg; pkg\"add IJulia InstantiateFromURL\"; pkg\"precompile\"
 RUN julia -e "using Pkg; pkg\"add Compat Images RDatasets VisualRegressionTests StatsPlots UnicodePlots Suppressor LaTeXStrings\"; pkg\"precompile \""
 RUN julia -e "using Pkg; pkg\"add PackageCompiler@0.6.3 Plots \"; using PackageCompiler; compile_package(\"Plots\", force = true)"; exit 0 
 RUN cd ~/.julia/packages/PackageCompiler/CJQcs/packages/Plots/ && julia -e "using Pkg; pkg\"activate .\"; pkg\"resolve \""
-RUN julia -e "using Pkg; pkg\"add PackageCompiler@0.6.3 Plots \"; using PackageCompiler; compile_package(\"Plots\", force = true)"; exit 0 
+RUN julia -e "using Pkg; pkg\"add PackageCompiler@0.6.3 Plots \"; using PackageCompiler; compile_package(\"Plots\", force = true)"
 
 
 # Copy in files from repo 
