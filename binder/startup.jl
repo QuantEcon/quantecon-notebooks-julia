@@ -1,2 +1,0 @@
-using Pkg 
-pkg"activate ."
