@@ -49,6 +49,7 @@ USER ${NB_USER}
 WORKDIR ${HOME}
 RUN julia -e "using Pkg; pkg\"add IJulia InstantiateFromURL\""
 RUN julia -e "using Pkg; pkg\"activate .\"; pkg\"instantiate\""
+RUN julia -e "using InstantiateFromURL; using Pkg; pkg\"activate .\"; packages_to_default_environment()"
 
 # PackageCompiler 
 RUN julia -e "using Pkg; pkg\"add GR Plots StatsPlots DataFrames StatsPlots CSV PlotUtils GeometryTypes Tables PackageCompiler#sd-notomls CategoricalArrays IteratorInterfaceExtensions PooledArrays WeakRefStrings\""    
