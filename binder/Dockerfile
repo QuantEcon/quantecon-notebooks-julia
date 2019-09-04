@@ -1,6 +1,7 @@
 FROM jupyter/base-notebook:b37d13027dc7
 
 # Install Linux prereqs
+USER root 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     build-essential \
     git \
@@ -27,7 +28,6 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@^1.0.1 --no
 ENV JULIA_VERSION=1.2.0
 ENV JULIA_DEPOT_PATH=/opt/julia
 ENV JULIA_PKGDIR=/opt/julia
-USER root
 RUN mkdir /opt/julia-${JULIA_VERSION} && \
     cd /tmp && \
     wget -q https://julialang-s3.julialang.org/bin/linux/x64/`echo ${JULIA_VERSION} | cut -d. -f 1,2`/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
@@ -43,7 +43,7 @@ COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
 RUN chown -R ${NB_UID} ${JULIA_PKGDIR}
-
+RUN chown -R ${NB_UID} ${JULIA_PKGDIR}-${JULIA_VERSION}
 
 # Julia setup 
 USER ${NB_USER}
