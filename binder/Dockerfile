@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:54872bcd40ae
+FROM jupyter/base-notebook:b37d13027dc7
 
 # Install Linux prereqs
 RUN apt-get update && apt-get install -yq --no-install-recommends \
