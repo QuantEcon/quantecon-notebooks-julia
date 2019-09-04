@@ -42,13 +42,12 @@ RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
 COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
-RUN chown -R ${NB_UID} ${JULIA_PKGDIR}
 RUN chown -R ${NB_UID} ${JULIA_PKGDIR}-${JULIA_VERSION}
 
 # Julia setup 
 USER ${NB_USER}
 WORKDIR ${HOME}
-RUN julia -e "add IJulia InstantiateFromURL"
+RUN julia -e "using Pkg; pkg\"add IJulia InstantiateFromURL\""
 RUN julia -e "using Pkg; pkg\"activate .\"; pkg\"instantiate\""
 
 # PackageCompiler 
