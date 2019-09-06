@@ -55,6 +55,6 @@ RUN julia -e "using InstantiateFromURL; using Pkg; pkg\"activate .\"; packages_t
 RUN julia -e "using Pkg; pkg\"add GR Plots StatsPlots DataFrames StatsPlots CSV PlotUtils GeometryTypes Tables PackageCompiler#sd-notomls CategoricalArrays IteratorInterfaceExtensions PooledArrays WeakRefStrings\""    
 RUN julia -e "using Pkg; pkg\"add IJulia Images DualNumbers Unitful Compat LaTeXStrings UnicodePlots DataValues IterativeSolvers VisualRegressionTests\"" 
 USER root 
-RUN julia -e "using PackageCompiler; syso, sysold = PackageCompiler.compile_incremental(:Plots, :DataFrames, :CSV, :StatsPlots, install = true); cp(syso, sysold, force = true)" 
+RUN julia -e "using PackageCompiler; syso, sysold = PackageCompiler.compile_incremental(:Plots, install = true); cp(syso, sysold, force = true)" 
 USER ${NB_USER}
 RUN julia -e "using Plots, Distributions, NLsolve, StaticArrays, ForwardDiff, QuantEcon, Parameters, Expectations, StatsPlots, Roots, Interpolations, Optim"
