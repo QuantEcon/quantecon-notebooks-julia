@@ -2,3 +2,4 @@ _static
 **/.DS_Store
 update.sh
 **/.ipynb_checkpoints
+getting_started_julia/us_cities.txt
